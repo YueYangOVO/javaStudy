@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.lyy.security.mapper.RoleMapper">
+
+
+    <!--查询用户的角色信息 根据userId-->
+    <select id="selectByUserId" resultType="java.lang.String" parameterType="java.lang.Long">
+        select tr.role
+        from t_user tu
+                 left join t_user_role tur on tu.id = tur.user_id
+                 left join t_role tr on tur.role_id = tr.id
+        where tu.id = #{id}
+    </select>
+</mapper>
