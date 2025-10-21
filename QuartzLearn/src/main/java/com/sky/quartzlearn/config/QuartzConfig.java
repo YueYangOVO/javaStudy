@@ -1,7 +1,9 @@
 package com.sky.quartzlearn.config;
 
+import com.sky.quartzlearn.job.MisfireJob;
 import com.sky.quartzlearn.job.MyJob;
 import org.quartz.*;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
@@ -10,17 +12,19 @@ import org.springframework.context.annotation.Configuration;
  * Created on 2025/10/21 10:05
  * @version 1.0
  */
-// @Configuration
+@Configuration
 public class QuartzConfig {
+
+    private static final String jobName = "misfireJob";
 
     /**
      * 配置JobDetail
      */
-    @Bean
+    @Bean(name = "misfireJob")
     public JobDetail jobDetail() {
-        return JobBuilder.newJob(MyJob.class)
+        return JobBuilder.newJob(MisfireJob.class)
                 .storeDurably()
-                .withIdentity("myJob", "group1")
+                .withIdentity("MisfireJob", "group1")
                 .usingJobData("count", 1)
                 .build();
     }
@@ -29,13 +33,18 @@ public class QuartzConfig {
      * 配置trigger
      */
     @Bean
-    public Trigger trigger() {
+    public Trigger trigger(@Qualifier(value = "misfireJob") JobDetail jobDetail) {
         //配置cron表达式
-        String cronExpression = "0/3 * * * * ? *"; //每隔5秒执行一次
+        String cronExpression = "0/5 * * * * ? *"; //每隔2分钟执行一次
+
+        CronScheduleBuilder cronScheduleBuilder = CronScheduleBuilder.cronSchedule(cronExpression).withMisfireHandlingInstructionDoNothing();
+
         return TriggerBuilder.newTrigger()
-                .withIdentity("trigger1", "group1")
+                //让任务从今天的 15:15:00开始执行
+//                .startAt(DateBuilder.todayAt(15, 15, 0))
+                .withIdentity(jobName + "_trigger")
                 .forJob(jobDetail())
-                .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression))
+                .withSchedule(cronScheduleBuilder)
                 .build();
     }
 
