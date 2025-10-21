@@ -63,4 +63,24 @@ public class QuartzController {
         JobUtils.deleteJob(scheduler, jobName);
         return "删除任务成功";
     }
+
+    /**
+     * 任务执行一次
+     */
+    @GetMapping("runOnce")
+    public String runJobOnce() {
+        JobUtils.runJobOnce(scheduler, jobName);
+        return "执行一次任务成功";
+    }
+
+    /**
+     * 修改任务执行频次
+     */
+    @GetMapping("/modify")
+    public String modifyJob() {
+        JobBean jobBean = new JobBean(jobName, ScheduleJob.class.getName(), "0/5 * * * * ? *");
+
+        JobUtils.modifyJob(scheduler, jobBean);
+        return "任务修改成功";
+    }
 }

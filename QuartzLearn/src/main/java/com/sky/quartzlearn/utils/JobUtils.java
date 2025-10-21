@@ -3,6 +3,8 @@ package com.sky.quartzlearn.utils;
 import com.sky.quartzlearn.entity.JobBean;
 import org.quartz.*;
 
+import java.net.Socket;
+
 /**
  * @author YueYang
  * Created on 2025/10/21 12:23
@@ -98,6 +100,51 @@ public class JobUtils {
         } catch (SchedulerException e) {
             throw new RuntimeException(e);
         }
+    }
+
+
+    /**
+     * 任务执行一次
+     */
+    public static void runJobOnce(Scheduler scheduler, String jobName) {
+        JobKey jobKey = JobKey.jobKey(jobName);
+
+        try {
+            scheduler.triggerJob(jobKey);
+        } catch (SchedulerException e) {
+            throw new RuntimeException(e);
+        }
+
+    }
+
+
+    /**
+     * 修改定时任务 主要是修改定时任务的执行时间，执行频率在触发器当中
+     */
+    public static void modifyJob(Scheduler scheduler, JobBean jobBean) {
+        //获取触发器的唯一标识
+        TriggerKey triggerKey = TriggerKey.triggerKey(jobBean.getJobName() + "_trigger");
+
+        try {
+            //通过触发器的唯一标识获取触发器对象
+            CronTrigger oldTrigger = (CronTrigger) scheduler.getTrigger(triggerKey);
+            //使用新的触发cron表达式
+            String cronExpression = jobBean.getCronExpression();
+            //通过老的触发器构建新的触发器, jobDetail还是老的
+            CronTrigger newTrigger = oldTrigger.getTriggerBuilder()
+                    //withMisfireHandlingInstructionDoNothing()方法不在执行错过的定时任务
+                    //默认会执行一次错过的定时任务
+                    .withSchedule(CronScheduleBuilder.cronSchedule(cronExpression).withMisfireHandlingInstructionDoNothing())
+                    .build();
+
+            //调度器更新任务的触发器
+            scheduler.rescheduleJob(triggerKey, newTrigger);
+
+        } catch (SchedulerException e) {
+            throw new RuntimeException(e);
+        }
+
+
     }
 
 
