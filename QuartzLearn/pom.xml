@@ -61,6 +61,12 @@
             <version>3.0.5</version>
             <scope>test</scope>
         </dependency>
+
+        <!--引入quartz依赖        -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-quartz</artifactId>
+        </dependency>
     </dependencies>
 
     <build>
