@@ -12,7 +12,7 @@ import org.springframework.context.annotation.Configuration;
  * Created on 2025/10/21 10:05
  * @version 1.0
  */
-@Configuration
+//@Configuration
 public class QuartzConfig {
 
     private static final String jobName = "misfireJob";
