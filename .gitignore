@@ -4,3 +4,11 @@
 *.class
 *Test.java
 **/test/
+/WechatPayLearn/src/main/resources/cert/
+/WechatPayLearn/src/main/java/com/lyy/wechat/service/IWxPayJsapiService.java
+/WechatPayLearn/src/main/resources/cert/1728809107_20250929_cert.zip
+/WechatPayLearn/src/main/resources/cert/apiclient_cert.p12
+/WechatPayLearn/src/main/resources/cert/apiclient_cert.pem
+/WechatPayLearn/src/main/resources/cert/apiclient_key.pem
+/WechatPayLearn/src/main/resources/cert/pub_key.pem
+/WechatPayLearn/src/main/resources/cert/证书使用说明.txt
