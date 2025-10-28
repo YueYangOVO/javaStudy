@@ -12,3 +12,4 @@
 /WechatPayLearn/src/main/resources/cert/apiclient_key.pem
 /WechatPayLearn/src/main/resources/cert/pub_key.pem
 /WechatPayLearn/src/main/resources/cert/证书使用说明.txt
+/WxLoginLearn/src/main/resources/application-dev.properties
