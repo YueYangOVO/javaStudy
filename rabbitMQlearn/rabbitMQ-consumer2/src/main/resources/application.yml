@@ -1,0 +1,14 @@
+# 配置消费者的rabbitmq
+spring:
+  rabbitmq:
+    host: 8.140.198.122
+    port: 5672
+    username: yueyang
+    password: 123456
+    # 要访问的虚拟主机
+    virtual-host: /
+    # 开启消费者2的手动确认 manual手动确认 none自动确认
+    listener:
+      simple:
+        prefetch: 1  # 每次只推送1条消息，避免大量消息卡住
+        acknowledge-mode: manual

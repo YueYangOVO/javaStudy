@@ -1,0 +1,31 @@
+# 配置rabbitMQ 配置当前用户能够远程访问 给队列中添加数据
+spring:
+  rabbitmq:
+    host: 8.140.198.122
+    port: 5672
+    virtual-host: / # 使用默认的虚拟机 /
+    # 注意有的用户不能远程访问
+    username: admin
+    password: 123456
+    #开启发布确认
+    publisher-confirm-type: correlated
+    #开启发布返回
+    publisher-returns: true
+    #连接工厂配置
+    cache:
+      channel:
+        size: 25
+        checkout-timeout: 30s
+    connection-timeout: 30s
+    # 模板配置 开启重试机制
+    template:
+      retry:
+        enabled: true
+        # 初始重试间隔 1秒
+        initial-interval: 1000ms
+        # 最大重试次数 3次
+        max-attempts: 3
+        # 最大重试间隔 10秒
+        max-interval: 10000ms
+        # 重试间隔 multiplier 是重试间隔的倍数
+        multiplier: 1.0

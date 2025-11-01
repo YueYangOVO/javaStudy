@@ -63,7 +63,7 @@ public class JwtUtils {
 
     /**
      * 解析token
-     *
+     * 1
      * @param token token字符串
      * @return 是否解析成功
      * 返回0token过期 1token无效  2 token合法

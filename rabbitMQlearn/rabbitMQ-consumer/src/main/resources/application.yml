@@ -1,0 +1,12 @@
+# 配置消费者的rabbitmq
+spring:
+  rabbitmq:
+    host: 8.140.198.122
+    port: 5672
+    username: yueyang
+    password: 123456
+    # 要访问的虚拟主机
+    virtual-host: /
+
+
+
