@@ -41,6 +41,7 @@
             <scope>test</scope>
         </dependency>
 
+
         <!--添加rabbitMQ依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -52,6 +53,13 @@
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-json</artifactId>
         </dependency>
+
+        <!-- 导入lombok依赖· 方便使用slf4j注解 -->
+         <dependency>
+            <groupId>org.projectlombok</groupId>
+            <artifactId>lombok</artifactId>
+            <version>1.18.24</version>
+         </dependency>
     </dependencies>
 
     <build>
