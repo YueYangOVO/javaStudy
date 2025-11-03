@@ -3,6 +3,8 @@ package com.lyy.listener;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Component;
 
+import java.util.Map;
+
 /**
  * @author YueYang
  * Created on 2025/11/1 17:15
@@ -101,6 +103,37 @@ public class MqListener {
     public void listenDirectQueue1Blue(String msg) {
         System.out.println("消费者2 监听direct.queue2 队列中消息，路由键blue，消息是:" + msg);
     }
+
+
+    //=================topic 模式=====================
+
+    /**
+     * 监听队列1中的消息，队列1 绑定路由键：*.red.#
+     */
+    @RabbitListener(queues = "topic.queue1")
+    public void listenTopicQueue1(String msg) {
+        System.out.println("消费者2 监听topic.queue1队列中消息,路由键 *.red.#，消息是: " + msg);
+    }
+
+
+    /**
+     * 监听队列2中的消息，队列2 绑定路由键：*.blue
+     */
+    @RabbitListener(queues = "topic.queue2")
+    public void listenTopicQueue2(String msg) {
+        System.out.println("消费者1 监听topic.queue2队列中消息,路由键 *.blue，消息是: " + msg);
+    }
+
+
+    /**
+     * 监听objectQueue队列中的消息，这个是修改转换器后的消息
+     */
+    @RabbitListener(queues = "objectQueue")
+    public void listenObjectQueue(Map<String, Object> msg) {
+        System.out.println("消费者接收到objectQueue中的消息: " + msg);
+    }
+
+
 
 
 }

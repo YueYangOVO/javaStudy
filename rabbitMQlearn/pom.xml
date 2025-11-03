@@ -55,11 +55,18 @@
         </dependency>
 
         <!-- 导入lombok依赖· 方便使用slf4j注解 -->
-         <dependency>
+        <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.24</version>
-         </dependency>
+        </dependency>
+
+        <!--引入jackson依赖用来对发送的消息 进行序列化-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.dataformat</groupId>
+            <artifactId>jackson-dataformat-xml</artifactId>
+            <version>2.9.10</version>
+        </dependency>
     </dependencies>
 
     <build>
