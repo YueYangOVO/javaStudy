@@ -1,0 +1,8 @@
+# rabbitmq 生产者配置
+spring:
+  rabbitmq:
+    host: 8.140.198.122
+    port: 5672
+    username: root
+    password: yueyang
+    virtual-host: hmall

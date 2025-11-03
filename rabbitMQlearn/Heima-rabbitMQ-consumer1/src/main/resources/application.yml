@@ -1,0 +1,12 @@
+# rabbitmq 消费者配置
+spring:
+  rabbitmq:
+    host: 8.140.198.122
+    port: 5672
+    username: root
+    password: yueyang
+    virtual-host: hmall
+    # 设置消费者 一次处理一条消息
+    listener:
+      simple:
+        prefetch: 1

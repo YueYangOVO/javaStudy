@@ -21,6 +21,8 @@
         <module>rabbitMQ-producer</module>
         <module>rabbitMQ-consumer</module>
         <module>rabbitMQ-consumer2</module>
+        <module>Heima-rabbitMQ-producer1</module>
+        <module>Heima-rabbitMQ-consumer1</module>
     </modules>
 
     <properties>

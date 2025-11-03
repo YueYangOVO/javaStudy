@@ -14,3 +14,5 @@
 /WechatPayLearn/src/main/resources/cert/pub_key.pem
 /WechatPayLearn/src/main/resources/cert/证书使用说明.txt
 /WxLoginLearn/src/main/resources/application-dev.properties
+# 注释掉.vscode这个文件提交
+.vscode/**
